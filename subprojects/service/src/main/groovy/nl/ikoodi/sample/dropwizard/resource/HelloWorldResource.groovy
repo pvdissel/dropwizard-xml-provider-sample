@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed
 import com.google.common.base.Optional
 import nl.ikoodi.sample.dropwizard.api.HelloWorldService
 import nl.ikoodi.sample.dropwizard.core.Saying
+import org.joda.time.DateTime
 
 import java.util.concurrent.atomic.AtomicLong
 
@@ -25,6 +26,6 @@ class HelloWorldResource implements HelloWorldService {
     @Override
     Saying sayHello(Optional<String> name) {
         final String value = name.or(defaultName)
-        return new Saying(counter.incrementAndGet(), value)
+        return new Saying(counter.incrementAndGet(), value, new DateTime())
     }
 }
