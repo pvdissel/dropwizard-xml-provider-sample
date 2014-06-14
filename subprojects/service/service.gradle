@@ -1,0 +1,22 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+dependencies {
+    compile libraries.groovy
+    compile libraries.dropwizard
+}
+
+applicationName = 'hello-world'
+mainClassName = 'nl.ikoodi.sample.dropwizard.HelloWorldApplication'
+
+run {
+    args 'server', "${projectDir}/src/main/resources/hello-world.yml"
+}
+
+jar {
+    baseName = applicationName
+    manifest {
+        attributes 'Implementation-Title': applicationName,
+                'Implementation-Version': version
+    }
+}

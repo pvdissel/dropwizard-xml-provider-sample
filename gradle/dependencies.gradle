@@ -1,0 +1,28 @@
+ext {
+    libraries = [:]
+    versions = [:]
+}
+
+versions += [
+        groovy    : '2.3.3',
+        dropwizard: '0.7.0',
+        jackson   : '2.4.0',
+        jersey    : '1.18.1',
+]
+
+libraries += [
+        groovy      : "org.codehaus.groovy:groovy:${versions.groovy}",
+        jaxrs       : "com.sun.jersey:jersey-core:${versions.jersey}",
+        jerseyClient: "com.sun.jersey:jersey-client:${versions.jersey}", // to make Groovy happy using Java-EE classes
+]
+
+libraries.jacksonProviders = [
+        "com.fasterxml.jackson.jaxrs:jackson-jaxrs-xml-provider:${versions.jackson}", // xml in/out
+]
+
+libraries.dropwizard = [
+        "io.dropwizard:dropwizard-core:${versions.dropwizard}",
+        libraries.jerseyClient,
+        libraries.jacksonProviders,
+]
+

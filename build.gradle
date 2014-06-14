@@ -1,0 +1,14 @@
+apply from: script('dependencies')
+
+description = 'A sample DropWizard-based service'
+group = 'nl.ikoodi.sample.dropwizard'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+File script(String name) {
+    project.file("gradle/${name}.gradle")
+}
